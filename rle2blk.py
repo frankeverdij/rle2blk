@@ -18,7 +18,7 @@ lookup_lif = {
 lookup_char = {v: k for k, v in lookup_lif.items()}
 lookup_char['b'] = 0
 lookup_char['A'] = 1
-print(lookup_char)
+
 def make_lif(bitmap):
     """Turn bitmap list into a lif pattern"""
     width = len(bitmap[0])
@@ -98,8 +98,8 @@ class RLE2Bitmap:
         self.x = 0
         self.y = 0
         values = ls.split(',')
-        self.width = int(list(re.findall('\d+', values[0]))[0])
-        self.height = int(list(re.findall('\d+', values[1]))[0])
+        self.width = int(list(re.findall(r'\d+', values[0]))[0])
+        self.height = int(list(re.findall(r'\d+', values[1]))[0])
         if (self.height < self.minheight):
             self.cleardim()
             return
@@ -159,8 +159,8 @@ class RLE2Bitmap:
 
 def main():
     parser = argparse.ArgumentParser(
-        description = 'Displays RLE patterns in a file in Unicode block '
-                      'or braille output ',
+        description = 'Displays RLE patterns in a file as Unicode '
+                      'block [default], braille block or lif output.',
         formatter_class = argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-b', '--braille', action = 'store_true',
         help = 'output using unicode Braille')
